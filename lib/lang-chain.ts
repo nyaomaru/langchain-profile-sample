@@ -1,10 +1,15 @@
 import { ChatOpenAI } from '@langchain/openai';
-import { PromptTemplate } from '@langchain/core/prompts';
-import { LLMChain } from 'langchain/chains';
+import { ChatPromptTemplate } from '@langchain/core/prompts';
+import { RunnableSequence } from '@langchain/core/runnables';
 
-const prompt = new PromptTemplate({
-  inputVariables: ['profile', 'question'],
-  template: `
+const prompt = ChatPromptTemplate.fromMessages([
+  [
+    'system',
+    'You are an assistant that answers questions based on a user profile.',
+  ],
+  [
+    'human',
+    `
 Here is the profile of Nyaomaru:
 
 {profile}
@@ -12,8 +17,9 @@ Here is the profile of Nyaomaru:
 Question: {question}
 
 Based on the above profile information, please answer the question as accurately as possible.
-`,
-});
+  `,
+  ],
+]);
 
 export function makeProfileChain(apiKey: string) {
   const chat = new ChatOpenAI({
@@ -21,8 +27,5 @@ export function makeProfileChain(apiKey: string) {
     temperature: 0.3,
   });
 
-  return new LLMChain({
-    llm: chat,
-    prompt,
-  });
+  return RunnableSequence.from([prompt, chat]);
 }
