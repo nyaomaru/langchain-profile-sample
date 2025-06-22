@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { makeProfileChain } from '@/lib/lang-chain';
-import profile from '@/data/profile.json';
+import { makeProfileQAChain } from '@/lib/lang-chain';
 
 export async function POST(req: Request) {
   const { question } = await req.json();
@@ -12,12 +11,10 @@ export async function POST(req: Request) {
     );
   }
 
-  const chain = makeProfileChain(process.env.OPENAI_API_KEY!);
-
-  const result = await chain.invoke({
-    profile: JSON.stringify(profile),
-    question,
-  });
+  const result = await makeProfileQAChain(
+    process.env.OPENAI_API_KEY!,
+    question
+  );
 
   return NextResponse.json({ result });
 }
