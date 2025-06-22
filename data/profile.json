@@ -2,5 +2,12 @@
   "name": "Nyaomaru",
   "experience": "Frontend engineer with over 7 years of experience, proficient in Vue, React, and TypeScript.",
   "location": "Based in Saga Prefecture, Japan.",
-  "specialty": "OSS development, library design, storytelling, and writing technical articles."
+  "specialty": "OSS development, library design, storytelling, and writing technical articles.",
+  "language": "Japanese, English, and Dutch.",
+  "fun": "Growing radish.",
+  "pet": "One small dog of chihuahua.",
+  "traveled": "Visited 10 countries. These are the Netherlands, UK, Portugal, Sweden, Germany, Belgium, Malaysia, Singapore, Indonesia and the United States.",
+  "OSS": "Contributed to Drupal and Quasar(At my legacy account) and more.",
+  "Library": "Created libraries such as Divider",
+  "who": "He is cat! and he is a frontend engineer."
 }
