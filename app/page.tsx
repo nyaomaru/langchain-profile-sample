@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import type { AskResponse } from '@/types/api/ask';
 
 export default function Home() {
   const [question, setQuestion] = useState('');
@@ -16,8 +17,9 @@ export default function Home() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question }),
     });
-    const data = await res.json();
-    setAnswer(data.result.text ?? String(data));
+    const data: AskResponse = await res.json();
+    const content = data.result.kwargs.content;
+    setAnswer(content);
   };
 
   return (
